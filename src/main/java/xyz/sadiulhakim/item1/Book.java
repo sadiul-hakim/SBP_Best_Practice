@@ -26,9 +26,9 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    private Author author;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "author_id")
+//    private Author author;
 
     @Override
     public boolean equals(Object o) {
