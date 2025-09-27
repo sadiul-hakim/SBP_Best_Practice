@@ -30,18 +30,18 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "author")
     private List<Book> books = new ArrayList<>();
 
-//    public void addBook(Book book) {
-//        this.books.add(book);
-//        book.setAuthor(this);
-//    }
-//
-//    public void removeBook(Book book) {
-//        book.setAuthor(null);
-//        this.books.remove(book);
-//    }
+    public void addBook(Book book) {
+        this.books.add(book);
+        book.setAuthor(this);
+    }
+
+    public void removeBook(Book book) {
+        book.setAuthor(null);
+        this.books.remove(book);
+    }
 
     /// The key reason you **shouldn’t just replace the `books` list with a new empty list**
     /// (e.g. `this.books = new ArrayList<>()`) in `removeBooks()` is because of **JPA/Hibernate entity relationship management**.
@@ -58,15 +58,14 @@ public class Author implements Serializable {
     /// ### 3. Iterator approach = proper dirty checking
     /// * The `iterator.remove()` approach updates the **same managed collection** Hibernate is tracking.
     /// * This way, Hibernate sees that each `Book` has been removed from the relationship, and combined with `orphanRemoval = true`, it issues the appropriate SQL `DELETE`.
-//    public void removeBooks() {
-//        Iterator<Book> iterator = this.books.iterator();
-//        while (iterator.hasNext()) {
-//            Book book = iterator.next();
-//            book.setAuthor(null);
-//            iterator.remove();
-//        }
-//    }
-
+    public void removeBooks() {
+        Iterator<Book> iterator = this.books.iterator();
+        while (iterator.hasNext()) {
+            Book book = iterator.next();
+            book.setAuthor(null);
+            iterator.remove();
+        }
+    }
     @Override
     public String toString() {
         return "Author{" +
