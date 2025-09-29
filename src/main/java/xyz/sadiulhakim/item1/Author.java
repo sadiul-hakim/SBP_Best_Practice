@@ -8,9 +8,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
@@ -30,16 +28,21 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "author")
-    private List<Book> books = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> books = new HashSet<>();
 
     public void addBook(Book book) {
         this.books.add(book);
-        book.setAuthor(this);
+        book.getAuthors().add(this);
     }
 
     public void removeBook(Book book) {
-        book.setAuthor(null);
+        book.getAuthors().remove(this);
         this.books.remove(book);
     }
 
@@ -62,10 +65,33 @@ public class Author implements Serializable {
         Iterator<Book> iterator = this.books.iterator();
         while (iterator.hasNext()) {
             Book book = iterator.next();
-            book.setAuthor(null);
+            book.getAuthors().remove(this);
             iterator.remove();
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        return id != null && id.equals(((Author) obj).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 2025;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
