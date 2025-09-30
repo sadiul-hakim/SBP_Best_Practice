@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -28,8 +29,14 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
 
+    public Book(String title, String isbn) {
+        this.title = title;
+        this.isbn = isbn;
+    }
+
+    @OrderBy("name DESC")
     @ManyToMany(mappedBy = "books")
-    private Set<Author> authors = new HashSet<>();
+    private Set<Author> authors = new LinkedHashSet<>();
 
     @Override
     public boolean equals(Object o) {

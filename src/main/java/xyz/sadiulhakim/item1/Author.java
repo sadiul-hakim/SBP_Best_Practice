@@ -28,6 +28,12 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
+    public Author(String name, String genre, int age) {
+        this.name = name;
+        this.genre = genre;
+        this.age = age;
+    }
+
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
             name = "author_book",
