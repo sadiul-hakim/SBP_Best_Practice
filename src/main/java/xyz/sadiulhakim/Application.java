@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class Application implements CommandLineRunner {
 
-    private final AuthRepo authRepo;
-    private final BookRepo bookRepo;
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -20,11 +17,6 @@ public class Application implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        Author author = authRepo.findById(1L).orElseThrow();
-        Author clonedAuthor = new Author(author, true);
-        clonedAuthor.setAge(54);
-        clonedAuthor.setName("Farell Tliop");
 
-        authRepo.save(clonedAuthor);
     }
 }
