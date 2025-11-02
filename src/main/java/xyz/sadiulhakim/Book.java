@@ -24,7 +24,7 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Author author;
 
     public Book() {
