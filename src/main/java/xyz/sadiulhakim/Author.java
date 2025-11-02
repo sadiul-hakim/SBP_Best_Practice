@@ -6,9 +6,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -26,12 +24,8 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "author_book",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id")
-    )
-    private Set<Book> books = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "author")
+    private List<Book> books = new ArrayList<>();
 
     public Author() {
     }
@@ -52,12 +46,12 @@ public class Author implements Serializable {
 
     public void addBook(Book book) {
         this.books.add(book);
-        book.getAuthors().add(this);
+        book.setAuthor(this);
     }
 
     public void removeBook(Book book) {
         this.books.remove(book);
-        book.getAuthors().remove(this);
+        book.setAuthor(null);
     }
 
     public void removeBooks() {
@@ -66,7 +60,7 @@ public class Author implements Serializable {
         while (iterator.hasNext()) {
             Book book = iterator.next();
 
-            book.getAuthors().remove(this);
+            book.setAuthor(null);
             iterator.remove();
         }
     }

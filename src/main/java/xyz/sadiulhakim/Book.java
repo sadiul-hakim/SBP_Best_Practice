@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,8 +24,8 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
 
-    @ManyToMany(mappedBy = "books")
-    private Set<Author> authors = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Author author;
 
     public Book() {
     }
