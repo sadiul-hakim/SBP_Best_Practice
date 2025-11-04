@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
 
 @Setter
 @Getter
@@ -16,20 +15,16 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(
-        name = "author",
+        name = "author_two",
         indexes = {
                 @Index(
-                        name = "index_name",
-                        columnList = "name",
+                        name = "index_name_genre",
+                        columnList = "name, genre",
                         unique = true
-                ),
-                @Index(
-                        name = "index_genre",
-                        columnList = "genre"
                 )
         }
 )
-public class Author implements Serializable {
+public class AuthorTwo implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -38,10 +33,10 @@ public class Author implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "genre", nullable = false)
+    @Column(name = "genre",nullable = false)
     private String genre;
     private int age;
 
@@ -60,7 +55,7 @@ public class Author implements Serializable {
             return false;
         }
 
-        return id != null && id.equals(((Author) obj).id);
+        return id != null && id.equals(((AuthorTwo) obj).id);
     }
 
     @Override
