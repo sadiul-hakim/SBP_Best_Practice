@@ -24,6 +24,7 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
 
+    @JoinColumn(name = "author_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Author author;
 
@@ -38,12 +39,12 @@ public class Book implements Serializable {
     @Override
     public boolean equals(Object obj) {
 
-        if (this == obj) {
-            return true;
-        }
-
         if (obj == null) {
             return false;
+        }
+
+        if (this == obj) {
+            return true;
         }
 
         if (getClass() != obj.getClass()) {

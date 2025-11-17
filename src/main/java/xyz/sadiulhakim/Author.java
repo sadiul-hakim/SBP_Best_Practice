@@ -50,8 +50,8 @@ public class Author implements Serializable {
     }
 
     public void removeBook(Book book) {
-        this.books.remove(book);
         book.setAuthor(null);
+        this.books.remove(book);
     }
 
     public void removeBooks() {
@@ -63,29 +63,6 @@ public class Author implements Serializable {
             book.setAuthor(null);
             iterator.remove();
         }
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        return id != null && id.equals(((Author) obj).id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 2021;
     }
 
     @Override
