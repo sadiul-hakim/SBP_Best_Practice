@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class Application implements CommandLineRunner {
@@ -20,11 +22,39 @@ public class Application implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        Author author = authRepo.findById(1L).orElseThrow();
-        Author clonedAuthor = new Author(author, true);
-        clonedAuthor.setAge(54);
-        clonedAuthor.setName("Farell Tliop");
+//        Author bazlur = new Author();
+//        bazlur.setAge(35);
+//        bazlur.setName("A N M Bazlur");
+//        bazlur.setGenre("Programming");
+//
+//        Book b1 = new Book();
+//        b1.setTitle("Java Programming");
+//        b1.setIsbn("001-BZ");
+//
+//        Book b2 = new Book();
+//        b1.setTitle("Java Thread Programming");
+//        b1.setIsbn("002-BZ");
+//
+//        bazlur.addBook(b1);
+//        bazlur.addBook(b2);
+//
+//        authRepo.save(bazlur);
+//----------------
+//        Author author = authRepo.findById(1L).orElseThrow();
 
-        authRepo.save(clonedAuthor);
+//        var b1 = new Book();
+//        b1.setTitle("Java Advanced Programming");
+//        b1.setIsbn("003-BZ");
+//
+//        author.addBook(b1);
+//        authRepo.save(author);
+        //---------------------
+//        Author author = authRepo.findById(1L).orElseThrow();
+//        List<Book> books = author.getBooks();
+//        author.removeBook(books.getLast());
+        //-------------------
+        Author author = authRepo.findById(1L).orElseThrow();
+        List<Book> books = author.getBooks();
+        author.removeBook(books.getFirst());
     }
 }

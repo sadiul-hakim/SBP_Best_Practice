@@ -24,7 +24,7 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
     public Author() {
@@ -46,11 +46,11 @@ public class Author implements Serializable {
 
     public void addBook(Book book) {
         this.books.add(book);
-        book.setAuthor(this);
+//        book.setAuthor(this);
     }
 
     public void removeBook(Book book) {
-        book.setAuthor(null);
+//        book.setAuthor(null);
         this.books.remove(book);
     }
 
@@ -60,7 +60,7 @@ public class Author implements Serializable {
         while (iterator.hasNext()) {
             Book book = iterator.next();
 
-            book.setAuthor(null);
+//            book.setAuthor(null);
             iterator.remove();
         }
     }
