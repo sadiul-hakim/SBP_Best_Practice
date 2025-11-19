@@ -25,7 +25,6 @@ public class Author implements Serializable {
     private int age;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "author_id")
     private List<Book> books = new ArrayList<>();
 
     public Author() {

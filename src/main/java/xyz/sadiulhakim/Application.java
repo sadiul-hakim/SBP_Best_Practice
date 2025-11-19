@@ -53,8 +53,8 @@ public class Application implements CommandLineRunner {
 //        List<Book> books = author.getBooks();
 //        author.removeBook(books.getLast());
         //-------------------
-        Author author = authRepo.findById(1L).orElseThrow();
-        List<Book> books = author.getBooks();
-        author.removeBook(books.getFirst());
+//        Author author = authRepo.findById(1L).orElseThrow();
+//        List<Book> books = author.getBooks();
+//        author.removeBook(books.getFirst());
     }
 }
