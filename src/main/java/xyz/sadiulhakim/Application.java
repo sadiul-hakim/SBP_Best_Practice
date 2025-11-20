@@ -46,6 +46,8 @@ public class Application implements CommandLineRunner {
         b1.setAuthor(author);
 
         bookRepo.save(b1);
+
+        b1.setTitle("Java Thread Programming");
         //---------------------
 //        Author author = authRepo.findById(1L).orElseThrow();
 //        List<Book> books = author.getBooks();
