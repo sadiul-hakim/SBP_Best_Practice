@@ -75,12 +75,13 @@ public class Application implements CommandLineRunner {
 
         //------------------------
 //        List<Book> books = bookRepo.findAllBooksOfAuthor(1L);
-//        List<Book> books = bookRepo.findAllBooksOfAuthor(1L);
 //        var b1 = new Book();
 //        b1.setTitle("Java Web Programming");
 //        b1.setIsbn("006-BZ");
 //        b1.setAuthor(books.getLast().getAuthor());
 //        books.add(bookRepo.save(b1));
         //-------------------
+        List<Book> books = bookRepo.findAllBooksOfAuthor(1L);
+        bookRepo.delete(books.removeFirst());
     }
 }
