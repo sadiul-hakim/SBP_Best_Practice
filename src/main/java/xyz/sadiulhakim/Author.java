@@ -24,45 +24,7 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "author")
-    private List<Book> books = new ArrayList<>();
-
     public Author() {
-    }
-
-    public Author(Author author, boolean cloneChildren) {
-        this.genre = author.getGenre();
-
-        if (!cloneChildren) {
-            // associate books
-            books.addAll(author.getBooks()); // Even though I did not associate the author with books it still works
-        } else {
-            // clone each book
-            for (Book book : author.getBooks()) {
-                addBook(new Book(book));
-            }
-        }
-    }
-
-    public void addBook(Book book) {
-        this.books.add(book);
-        book.setAuthor(this);
-    }
-
-    public void removeBook(Book book) {
-        book.setAuthor(null);
-        this.books.remove(book);
-    }
-
-    public void removeBooks() {
-        Iterator<Book> iterator = this.books.iterator();
-
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-
-            book.setAuthor(null);
-            iterator.remove();
-        }
     }
 
     @Override

@@ -31,11 +31,6 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(Book book) {
-        this.title = book.getTitle();
-        this.isbn = book.getIsbn();
-    }
-
     @Override
     public boolean equals(Object obj) {
 
