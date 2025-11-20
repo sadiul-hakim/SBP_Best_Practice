@@ -1,7 +1,5 @@
 package xyz.sadiulhakim;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +13,5 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 
     @Transactional(readOnly = true)
     @Query("select b from Book b where b.author.id=:id")
-    Page<Book> findAllBooksOfAuthor(@Param("id") Long id, Pageable pageable);
+    List<Book> findAllBooksOfAuthor(@Param("id") Long id);
 }
