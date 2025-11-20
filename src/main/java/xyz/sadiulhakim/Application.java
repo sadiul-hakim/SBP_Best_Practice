@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class Application implements CommandLineRunner {
@@ -38,16 +40,16 @@ public class Application implements CommandLineRunner {
 //
 //        authRepo.save(bazlur);
 //----------------
-        Author author = authRepo.getReferenceById(1L);
-
-        var b1 = new Book();
-        b1.setTitle("Java Advanced Programming");
-        b1.setIsbn("003-BZ");
-        b1.setAuthor(author);
-
-        bookRepo.save(b1);
-
-        b1.setTitle("Java Thread Programming");
+//        Author author = authRepo.getReferenceById(1L);
+//
+//        var b1 = new Book();
+//        b1.setTitle("Java Advanced Programming");
+//        b1.setIsbn("003-BZ");
+//        b1.setAuthor(author);
+//
+//        bookRepo.save(b1);
+//
+//        b1.setTitle("Java Thread Programming");
         //---------------------
 //        Author author = authRepo.findById(1L).orElseThrow();
 //        List<Book> books = author.getBooks();
@@ -56,5 +58,14 @@ public class Application implements CommandLineRunner {
 //        Author author = authRepo.findById(1L).orElseThrow();
 //        List<Book> books = author.getBooks();
 //        author.removeBook(books.getFirst());
+
+        //------------------------------
+//        Author author = authRepo.getReferenceById(1L);
+//        List<Book> books = bookRepo.findAllByAuthor(author);
+//        System.out.println(books);
+
+        List<Book> allBooksOfAuthor = bookRepo.findAllBooksOfAuthor(1L);
+        System.out.println(allBooksOfAuthor);
+        allBooksOfAuthor.getFirst().setIsbn("Not Available");
     }
 }
