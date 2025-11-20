@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -64,8 +67,10 @@ public class Application implements CommandLineRunner {
 //        List<Book> books = bookRepo.findAllByAuthor(author);
 //        System.out.println(books);
 
-        List<Book> allBooksOfAuthor = bookRepo.findAllBooksOfAuthor(1L);
-        System.out.println(allBooksOfAuthor);
-        allBooksOfAuthor.getFirst().setIsbn("Not Available");
+//        Page<Book> allBooksOfAuthor = bookRepo.findAllBooksOfAuthor(1L, PageRequest.of(1, 2, Sort.by(Sort.Direction.ASC, "title")));
+//        System.out.println(allBooksOfAuthor.getTotalPages());
+//        System.out.println(allBooksOfAuthor.getNumber());
+//        System.out.println(allBooksOfAuthor.getContent());
+//        allBooksOfAuthor.getFirst().setIsbn("Not Available");
     }
 }
