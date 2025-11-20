@@ -38,14 +38,14 @@ public class Application implements CommandLineRunner {
 //
 //        authRepo.save(bazlur);
 //----------------
-//        Author author = authRepo.findById(1L).orElseThrow();
-//
-//        var b1 = new Book();
-//        b1.setTitle("Java Advanced Programming");
-//        b1.setIsbn("003-BZ");
-//
-//        author.addBook(b1);
-//        authRepo.save(author);
+        Author author = authRepo.getReferenceById(1L);
+
+        var b1 = new Book();
+        b1.setTitle("Java Advanced Programming");
+        b1.setIsbn("003-BZ");
+        b1.setAuthor(author);
+
+        bookRepo.save(b1);
         //---------------------
 //        Author author = authRepo.findById(1L).orElseThrow();
 //        List<Book> books = author.getBooks();
