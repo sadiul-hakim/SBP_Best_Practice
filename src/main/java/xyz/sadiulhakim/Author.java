@@ -26,6 +26,7 @@ public class Author implements Serializable {
     private String genre;
     private int age;
 
+    // Removing author should not remove book as that book may belong to other authors as well.
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "author_book",
             joinColumns = @JoinColumn(name = "author_id"),

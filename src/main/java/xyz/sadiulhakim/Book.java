@@ -23,7 +23,7 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
 
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany(mappedBy = "books") // This makes Author parent
     private Set<Author> authors = new HashSet<>();
 
     public Book() {
