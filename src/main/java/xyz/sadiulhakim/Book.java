@@ -25,7 +25,8 @@ public class Book implements Serializable {
     private String isbn;
 
     @ManyToMany(mappedBy = "books") // This makes Author parent
-    private Set<Author> authors = new HashSet<>();
+    @OrderBy("name DESC") // Set does not preserve order by default, this annotation sorts the set.
+    private Set<Author> authors = new HashSet<>(); // If there is a consistency issue, use LinkedHashSet
 
     public Book() {
     }
