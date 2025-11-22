@@ -56,10 +56,24 @@ public class Application implements CommandLineRunner {
 
         // -----------------------------
 
-        Author author1 = authRepo.findById(1L).orElseThrow();
-        Book book1 = bookRepo.findById(1L).orElseThrow();
+//        Author author1 = authRepo.findById(1L).orElseThrow();
+//        Book book1 = bookRepo.findById(1L).orElseThrow();
+//
+//        // If we use List instead of set, Hibernate deletes all entities of the author from junction table then reinsert entities except the deleting one
+//        author1.removeBook(book1);
 
-        // If we use List instead of set, Hibernate deletes all entities of the author from junction table then reinsert entities except the deleting one
-        author1.removeBook(book1);
+        // ----------------------------------------
+
+//        Author author1 = authRepo.findById(1L).orElseThrow();
+//        var book1 = new Book();
+//        book1.setTitle("Book1");
+//        book1.setIsbn("Nothing");
+//
+//        author1.addBook(book1);
+        //---------------------------
+//        Author author1 = authRepo.findById(1L).orElseThrow();
+//        var book1 = bookRepo.findById(1L).orElseThrow();
+//
+//        author1.addBook(book1);
     }
 }
